@@ -1,7 +1,7 @@
 ## Ignore Visual Studio Code temporary files, build results, and files 
 
 # code files
-.code/
+.vscode/
 
 # Build results
 bin/
