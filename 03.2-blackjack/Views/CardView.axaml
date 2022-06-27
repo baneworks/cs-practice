@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:clr-vm="clr-namespace:Blackjack.ViewModels"
+             xmlns:clr-model="clr-namespace:Blackjack.Model"
+             x:Class="Blackjack.Views.CardView">
+
+    <UserControl.Resources>
+        <clr-vm:UriConverter x:Key="uriConverter"/>
+    </UserControl.Resources>
+
+    <Button BorderThickness="0"
+            Padding="0"
+            Width="{Binding Width}"
+            Height="{Binding Height}"
+            IsEnabled="{Binding Enabled, Mode=TwoWay}"
+            Command="{Binding OnCommand}">
+
+        <Image Source="{Binding Card.Uri, Converter={StaticResource uriConverter}, ConverterParameter='{Binding .}'}"
+                                Width="{Binding $parent[Button].Width}" Height="{Binding $parent[Button].Height}"
+                                Stretch="None" ClipToBounds="True"
+                                VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+    </Button>
+
+</UserControl>

@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Blackjack.Views.ScoreView">
+
+    <StackPanel Spacing="4">
+
+        <TextBlock Text="SCORE"
+                Foreground="Black" Background="White"
+                FontSize="18" FontWeight="700"
+                HorizontalAlignment="Center"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="3" Padding="8" Height="255">
+
+            <StackPanel Spacing="24" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <TextBlock Text="{Binding DealerScore}, StringFormat=\{0\}}}"
+                           Foreground="DarkOrange"
+                           FontSize="96" FontWeight="700"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text=":"
+                           Foreground="DarkGray"
+                           FontSize="96" FontWeight="700"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock Text="{Binding PlayerScore, StringFormat=\{0\}}}"
+                           Foreground="DarkSeaGreen"
+                           FontSize="96" FontWeight="700"
+                           HorizontalAlignment="Center"/>
+
+            </StackPanel>
+
+        </Border>
+
+    </StackPanel>
+
+</UserControl>

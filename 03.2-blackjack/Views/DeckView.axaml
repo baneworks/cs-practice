@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Blackjack.Views.DeckView">
+
+    <StackPanel Spacing="4">
+
+        <TextBlock Text="DECK"
+                Foreground="Black" Background="Gray"
+                FontSize="18" FontWeight="700"
+                HorizontalAlignment="Center"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="3" Padding="0">
+
+            <Grid x:Name="Deck" Margin="4" ColumnDefinitions="175,4,175" RowDefinitions="Auto">
+
+                <UserControl Content="{Binding CardLeft}" Grid.Column="0" Grid.Row="0"/>
+                <UserControl Content="{Binding CardCurrent}" Grid.Column="2" Grid.Row="0"/>
+
+            </Grid>
+
+        </Border>
+
+    </StackPanel>
+
+</UserControl>

@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Blackjack.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="800"
+        Width="1400" Height="800" MinWidth="1400" MinHeight="800"
+        x:Class="Blackjack.Views.MainWindow"
+        Icon="/Assets/blackjack.ico"
+        Title="BlackJack game"
+        xmlns:local="clr-namespace:Blackjack.Views">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Panel Background="Gray">
+
+        <Grid Margin="4">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380" MinWidth="380"/>
+                <ColumnDefinition Width="85" MinWidth="85"/>
+                <ColumnDefinition Width="305" MinWidth="305"/>
+                <ColumnDefinition Width="*" MinWidth="85"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="340" MinHeight="290"/>
+                <RowDefinition Height="*" MinHeight="100"/>
+                <RowDefinition Height="290" MinHeight="290"/>
+            </Grid.RowDefinitions>
+
+            <UserControl Content="{Binding DeckView}" Grid.Row="0" Grid.Column="0"/>
+
+            <UserControl Content="{Binding DealerView}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"/>
+
+            <UserControl Content="{Binding PlayerView}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3"/>
+
+            <UserControl Content="{Binding ScoreView}" Grid.Row="2" Grid.Column="0"/>
+
+            </Grid>
+
+    </Panel>
+
+</Window>
