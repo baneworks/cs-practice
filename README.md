@@ -214,3 +214,32 @@ Additional goals:
 2. Tuple + switch matching.
 
 To give up during game just type `stop`.
+
+# Sentence's words (ex. 5.1, 5.2)
+
+Tasks 5.1, 5.2 realisation. Do sentence split, sort and print.
+
+Questions:
+
+For example, consider following code:
+
+```cs
+string[] res = str.Split(' '); // order as is
+Array.Sort(res); // order is ascending
+// ... in far far galaxy
+// Suppose, we accidentally forget about the called Sort()
+SaySentence(res); // voila, we get a mess
+```
+
+1. Seems unusual that method can change its args. Looks like some kind of shoot to own leg enabled by
+   default.
+2. If I want to avoid it I get boilerplate like this?
+
+```cs
+static string[] Sort(string[] words)
+{
+    string[] sorted = (string[]) words.Clone();
+    Array.Sort(sorted);
+    return sorted;
+}
+```
