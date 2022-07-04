@@ -1,7 +1,10 @@
-## Ignore Visual Studio Code temporary files, build results, and files 
+## Ignore Visual Studio Code temporary files, build results, and files
 
 # code files
 .vscode/
+
+# plantuml
+plantuml-images/
 
 # Build results
 bin/
