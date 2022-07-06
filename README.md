@@ -1,14 +1,12 @@
-# C# practice
-
 This repository contains the results of the test tasks of the C# developer course from skillBox.
 
 The tasks were completed by Rinat Levchuk (rinat.levchuk@gmail.com).
 
-## Hello world (ex. 1.1, 1.2)
+# Hello world (ex. 1.1, 1.2)
 
 The program prints a welcome message to the console, reads the code of the entered character, and exits.
 
-## Variables basics (ex. 2.1, 2.2)
+# Variables basics (ex. 2.1, 2.2)
 
 ****
 Main aim of this practice:
@@ -26,7 +24,7 @@ Program waiting for pressed key and produce table of student's records.
 
 Work in progress
 
-## Blackjack game (PoC, ex. 3.2)
+# Blackjack game (PoC, ex. 3.2)
 
 PoC realisation of Blackjack game.
 
@@ -241,5 +239,50 @@ static string[] Sort(string[] words)
     string[] sorted = (string[]) words.Clone();
     Array.Sort(sorted);
     return sorted;
+}
+```
+
+# Employees (ex. 6)
+
+Employee database management software.
+
+Questions:
+
+1. If I try use DateOnly I had some strange side effects, but if I use DateTime all works as expected.
+
+2. Don't get how to write something like that:
+
+```cs
+// not working
+(RecID id, Worker worker) rec = fields switch
+{
+    var [id, dt, name, _, height, birthdate, origin, _] => (new RecID(id, dt), new Worker { /* ... */ }),
+    _ => throw new System.IO.FileLoadException("employees.db is corrupt!"),
+};
+```
+
+3. Finalizer never called `~Database() { }`
+
+4. In fact I use two collection, but seems is best to use one. May `ref` may help, but it isn't work
+   with `properties`? Problem in color:
+
+```cs
+// 1st collection
+public class Database
+{
+  Dictionary<RecID, Worker> db = new();
+  public IEnumerable<Worker> GetItems() => db.Values;
+  public void Add() { /* ... */ }
+}
+
+// 2nd collection with same content
+public partial class DbViewModel : ViewModelBase
+{
+  public ObservableCollection<Worker> Employees { get; }
+  public DbViewModel(Database db)
+  {
+      Employees = new ObservableCollection<Worker>(db.GetItems());
+  }
+  public void Add() { /* needs to call db.Add() to sync content*/ }
 }
 ```

@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Employees.Views.RecordView">
+
+    <DockPanel>
+        <Button DockPanel.Dock="Bottom" Command="{Binding Cancel}">Cancel</Button>
+        <Button DockPanel.Dock="Bottom" Command="{Binding Ok}">OK</Button>
+        <StackPanel DockPanel.Dock="Top"
+                    Spacing="8"
+                    VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal"
+                        Spacing="8"
+                        VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBox Watermark="Firsname" Text="{Binding FirstName}" Width="150" Height="15" AcceptsReturn="False"/>
+                <TextBox Watermark="Middlename" Text="{Binding MiddleName}" Width="200" Height="15" AcceptsReturn="False"/>
+                <TextBox Watermark="Lastname" Text="{Binding LastName}" Width="200" Height="15" AcceptsReturn="False"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="8"
+                        VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBox Watermark="Origin" Text="{Binding Origin}" Width="450" Height="15" AcceptsReturn="False"/>
+                <TextBox Watermark="Height" Text="{Binding Height}" Width="100" Height="15" AcceptsReturn="False"/>
+            </StackPanel>
+            <DatePicker SelectedDate="{Binding BirthDate}"/>
+        </StackPanel>
+    </DockPanel>
+
+</UserControl>
