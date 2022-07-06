@@ -148,8 +148,10 @@ class RandomMatrix
     {
         const int kMemLimit = 0X7FEFFFFF;
 
-        if (rows < 2 || cols < 2)
-            throw new System.ArgumentException("some mess in matrix dimension");
+        // removed because if (rows < 1 || cols < 1) is meanless
+        // if rows or cols <= 0 attemp to create array will raise exception
+        // if (rows < 2 || cols < 2)
+        //     throw new System.ArgumentException("some mess in matrix dimension");
 
         if (rows * cols >= Array.MaxLength || rows * cols * sizeof(int) >= kMemLimit)
             throw new System.InvalidOperationException("requested matrix size too long");
