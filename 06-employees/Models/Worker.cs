@@ -4,7 +4,7 @@ namespace Employees.Models;
 
 public class Worker
 {
-    private int? _age = null;
+    protected int? _age = null;
     private DateTime? _birthdate = null;
     public string? FirstName { get; set; } = null;
     public string? MiddleName { get; set; } = null;
@@ -12,8 +12,6 @@ public class Worker
     public string? Origin { get; set; } = null;
     public int? Age => _age;
     public int? Height { get; set; } = null;
-    // fixme: why this not working? (see README)
-    // public DateOnly? BirthDate
     public DateTime? BirthDate
     {
         get => _birthdate;
@@ -23,9 +21,6 @@ public class Worker
             CalcAge(value);
         }
     }
-
-    //* ugly
-    // private void CalcAge(DateOnly? bd) => _age => bd != null ? (int) ((DateTime.Today - bd.Value.ToDateTime(TimeOnly.MinValue)).TotalDays/365.2425) : null;
 
     // fixme: wrong if birth date is 29.02.xxxx
     private void CalcAge(DateTime? bd)

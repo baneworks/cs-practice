@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using ReactiveUI;
+using System.Reactive;
 
 using Employees.Services;
 using Employees.Models;
@@ -9,19 +8,21 @@ namespace Employees.ViewModels;
 
 public partial class DbViewModel : ViewModelBase
 {
-    Database _db;
-    public ObservableCollection<Worker> Employees { get; }
-    public void Add(Worker worker)
+    public Database Employees { get; }
+    public WorkerWithId? SelectedWorker { get; set; } = null;
+    public ReactiveCommand<Unit, WorkerWithId?> Edit { get; }
+    public void Add(Worker worker) => Employees.Add(worker);
+    public void Remove()
     {
-        if (worker.IsValid())
+        if (SelectedWorker != null)
         {
-            Employees.Add(worker);
-            _db.Add(worker);
+            Employees.Remove(SelectedWorker);
+            SelectedWorker = null;
         }
     }
     public DbViewModel(Database db)
     {
-        _db = db;
-        Employees = new ObservableCollection<Worker>(db.GetItems());
+        Employees = db;
+        Edit = ReactiveCommand.Create(() => SelectedWorker);
     }
 }

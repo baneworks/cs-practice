@@ -7,15 +7,29 @@
 
     <DockPanel>
 
-        <Button DockPanel.Dock="Bottom"
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button DockPanel.Dock="Bottom"
                 HorizontalAlignment="Center"
-                Content="Add an item"
+                Content="Add"
                 Command="{Binding $parent[Window].DataContext.AddItem}"/>
+            <Button DockPanel.Dock="Bottom"
+                HorizontalAlignment="Center"
+                Content="Remove"
+                Command="{Binding Remove}"/>
+            <Button DockPanel.Dock="Bottom"
+                HorizontalAlignment="Center"
+                Content="Edit"
+                Command="{Binding $parent[Window].DataContext.AddItem}"/>
+        </StackPanel>
 
         <DataGrid DockPanel.Dock="Top"
             AutoGenerateColumns="True"
-            IsEnabled="False"
+            IsEnabled="True"
             GridLinesVisibility="All"
+            SelectedItem="{Binding SelectedWorker}"
             Items="{Binding Employees}"/>
 
     </DockPanel>

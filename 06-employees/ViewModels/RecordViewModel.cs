@@ -9,19 +9,12 @@ namespace Employees.ViewModels;
 public partial class RecordViewModel : ViewModelBase
 {
     Worker _worker = new Worker();
-    // (string? first, string? middle, string? last) _name = (null, null, null);
     public RecordViewModel()
     {
         Ok = ReactiveCommand.Create(() => PassWorker());
         Cancel = ReactiveCommand.Create(() => { });
     }
-    private Worker? PassWorker()
-    {
-        if (_worker.IsValid())
-            return _worker;
-        else
-            return null;
-    }
+    private Worker? PassWorker() => _worker.IsValid() ? _worker : null;
     public ReactiveCommand<Unit, Worker?> Ok { get; }
     public ReactiveCommand<Unit, Unit> Cancel { get; }
     public string? FirstName

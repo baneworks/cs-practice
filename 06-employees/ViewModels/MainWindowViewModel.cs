@@ -24,13 +24,14 @@ public class MainWindowViewModel : ViewModelBase
     }
     public void AddItem()
     {
-        var vm = new RecordViewModel();
+        var vmRecord = new RecordViewModel();
 
         // Observable.Merge(vm.Ok, vm.Cancel.Select(_ => new Unit()));
 
         Observable.Merge(
-            vm.Ok,
-            vm.Cancel.Select(_ => (Worker?)null))
+            vmRecord.Ok,
+            _dbView.Edit,
+            vmRecord.Cancel.Select(_ => (Worker?)null))
             .Take(1)
             .Subscribe(model =>
             {
@@ -40,7 +41,7 @@ public class MainWindowViewModel : ViewModelBase
                 View = _dbView;
             });
 
-        View = vm;
+        View = vmRecord;
 
     }
 }

@@ -6,8 +6,13 @@
              x:Class="Employees.Views.RecordView">
 
     <DockPanel>
-        <Button DockPanel.Dock="Bottom" Command="{Binding Cancel}">Cancel</Button>
-        <Button DockPanel.Dock="Bottom" Command="{Binding Ok}">OK</Button>
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button Command="{Binding Ok}">OK</Button>
+            <Button Command="{Binding Cancel}">Cancel</Button>
+        </StackPanel>
         <StackPanel DockPanel.Dock="Top"
                     Spacing="8"
                     VerticalAlignment="Top" HorizontalAlignment="Left">
