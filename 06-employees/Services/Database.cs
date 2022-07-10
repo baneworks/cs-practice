@@ -110,7 +110,6 @@ public sealed class Database : IDisposable, IEnumerable<WorkerWithId>, INotifyCo
     #endregion
 
     #region collection manage
-    // public IEnumerable<Worker> GetItems() => db.Values;
     private (RecID, WorkerWithId) ParseRec(string[] fields) =>
         fields switch
                 {
@@ -134,7 +133,7 @@ public sealed class Database : IDisposable, IEnumerable<WorkerWithId>, INotifyCo
         Update();
         NotifyCollectionChanged();
     }
-     public void Add(WorkerWithId worker)
+    public void Add(WorkerWithId worker)
     {
         RecID id = new RecID(db.Keys.Count + 1, DateTime.Now.ToString("dd.MM.yyyy hh:mm"));
         worker.Id(id);

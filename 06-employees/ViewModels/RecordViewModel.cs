@@ -14,6 +14,10 @@ public partial class RecordViewModel : ViewModelBase
         Ok = ReactiveCommand.Create(() => PassWorker());
         Cancel = ReactiveCommand.Create(() => { });
     }
+    public RecordViewModel(Worker? worker) : this()
+    {
+        if (_worker != null) _worker = worker!;
+    }
     private Worker? PassWorker() => _worker.IsValid() ? _worker : null;
     public ReactiveCommand<Unit, Worker?> Ok { get; }
     public ReactiveCommand<Unit, Unit> Cancel { get; }

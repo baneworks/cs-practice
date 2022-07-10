@@ -24,9 +24,7 @@ public class MainWindowViewModel : ViewModelBase
     }
     public void AddItem()
     {
-        var vmRecord = new RecordViewModel();
-
-        // Observable.Merge(vm.Ok, vm.Cancel.Select(_ => new Unit()));
+        var vmRecord = new RecordViewModel(_dbView.SelectedWorker);
 
         Observable.Merge(
             vmRecord.Ok,
