@@ -242,47 +242,13 @@ static string[] Sort(string[] words)
 }
 ```
 
-# Employees (ex. 6)
+# Employees (ex. 6, 7)
 
 Employee database management software.
 
-Questions:
+# Collections
 
-1. If I try use DateOnly I had some strange side effects, but if I use DateTime all works as expected.
+## List for whole numbers (ex. 8.1)
 
-2. Don't get how to write something like that:
-
-```cs
-// not working
-(RecID id, Worker worker) rec = fields switch
-{
-    var [id, dt, name, _, height, birthdate, origin, _] => (new RecID(id, dt), new Worker { /* ... */ }),
-    _ => throw new System.IO.FileLoadException("employees.db is corrupt!"),
-};
-```
-
-3. Finalizer never called `~Database() { }`
-
-4. In fact I use two collection, but seems is best to use one. May `ref` may help, but it isn't work
-   with `properties`? Problem in color:
-
-```cs
-// 1st collection
-public class Database
-{
-  Dictionary<RecID, Worker> db = new();
-  public IEnumerable<Worker> GetItems() => db.Values;
-  public void Add() { /* ... */ }
-}
-
-// 2nd collection with same content
-public partial class DbViewModel : ViewModelBase
-{
-  public ObservableCollection<Worker> Employees { get; }
-  public DbViewModel(Database db)
-  {
-      Employees = new ObservableCollection<Worker>(db.GetItems());
-  }
-  public void Add() { /* needs to call db.Add() to sync content*/ }
-}
-```
+Realisation just due task requirements.
+List filled up in constructor.
