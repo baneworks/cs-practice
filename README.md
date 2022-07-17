@@ -252,3 +252,15 @@ Employee database management software.
 
 Realisation just due task requirements.
 List filled up in constructor.
+
+## PhoneBook (ex. 8.2)
+
+Program parses user input.
+
+Acceptable command is:
+
++ /add <phonenum> <name>
++ /find <phonenum>
++ /rm <phonenum>
++ /ls
++ /exit
