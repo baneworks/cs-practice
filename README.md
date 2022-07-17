@@ -264,3 +264,7 @@ Acceptable command is:
 + /rm <phonenum>
 + /ls
 + /exit
+
+## HashSet (ex. 8.3)
+
+Realisation just due task requirements.
