@@ -1,8 +1,8 @@
-namespace task_08_2;
+namespace CmdLets;
 
 #region const & enums
 
-internal struct PatterConsts
+public struct PatterConsts
 {
     public const string Initial = @"^\s*";
     public const string Separator = @"\s+";
@@ -16,7 +16,7 @@ internal struct PatterConsts
 ///     <item>International - международные (форматируются)</item>
 /// </list>
 /// </summary>
-internal enum PhoneNumType
+public enum PhoneNumType
 {
     National,
     International,
@@ -25,7 +25,7 @@ internal enum PhoneNumType
 
 #endregion
 
-interface ICmdArg
+public interface ICmdArg
 {
     string Name { get; }
     bool Optional { get; set; }
@@ -47,7 +47,7 @@ interface ICmdArg
 /// <summary>
 /// Номер телефона с кодом страны и оператора. Позволительное упрощение
 /// </summary>
-struct PhoneNum : ICmdArg
+public struct PhoneNum : ICmdArg
 {
     static readonly string name = "PhoneNum";
     static readonly string[] components = new string[] {"pref", "op", "phone"};
@@ -122,7 +122,7 @@ struct PhoneNum : ICmdArg
 /// <summary>
 /// Фамилия Имя Отчество
 /// </summary>
-struct PersonName : ICmdArg
+public struct PersonName : ICmdArg
 {
     static readonly string name = "PersonName";
     static readonly string[] components = new string[] {"ln", "fn", "mn"};
@@ -169,7 +169,7 @@ struct PersonName : ICmdArg
     public override string ToString() => Value ?? String.Empty;
 }
 
-struct CmdLet : IEnumerable<ICmdArg>
+public struct CmdLet : IEnumerable<ICmdArg>
 {
     List<ICmdArg> Args = new();
     public string Pattern => $"{PatterConsts.Initial}/(?<cmd>(?>{Cmd}))";
@@ -219,7 +219,7 @@ struct CmdLet : IEnumerable<ICmdArg>
     IEnumerator IEnumerable.GetEnumerator() => Args.GetEnumerator();
 }
 
-struct CmdSet : IEnumerable<CmdLet>
+public struct CmdSet : IEnumerable<CmdLet>
 {
     List<CmdLet> cmdSet;
     public CmdLet? Match { get; private set; } = null;

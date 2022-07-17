@@ -5,6 +5,8 @@ global using System.Collections.Generic;
 global using System.Text.RegularExpressions;
 global using static System.Console;
 
+using CmdLets;
+
 #if __test__
 using task_08_2_tests;
 #endif
