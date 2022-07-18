@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notebook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="notebook.db.xsd">
+  <Person Name="Levchuk Rinat Vladimirovich">
+    <Address>
+      <Street>Lenina</Street>
+      <HouseNumber>1</HouseNumber>
+      <FlatNumber>1</FlatNumber>
+    </Address>
+    <Phones>
+      <MobilePhone>+79001234567</MobilePhone>
+      <FlatPhone>123-45-67</FlatPhone>
+    </Phones>
+  </Person>
+  <Person Name="Ivanov Ivan Ivanovich">
+    <Address>
+      <Street>Lenina</Street>
+      <HouseNumber>2</HouseNumber>
+      <FlatNumber>2</FlatNumber>
+    </Address>
+    <Phones>
+      <MobilePhone>+71111234567</MobilePhone>
+      <FlatPhone>123-45-67</FlatPhone>
+    </Phones>
+  </Person>
+  <Person Name="Petrov Ivan Ivanovich">
+    <Address>
+      <Street>Lenina</Street>
+      <HouseNumber>3</HouseNumber>
+      <FlatNumber>3</FlatNumber>
+    </Address>
+    <Phones>
+      <MobilePhone>+72221234567</MobilePhone>
+      <FlatPhone>123-45-67</FlatPhone>
+    </Phones>
+  </Person>
+</notebook>
