@@ -268,3 +268,20 @@ Acceptable command is:
 ## HashSet (ex. 8.3)
 
 Realisation just due task requirements.
+
+## NoteBook (ex. 8.3)
+
+Simple console notebook. Program wait for user command. Acceptable command is:
+
++ /add <name> <mobile_phone> <flat_phone> <address>
++ /ls
++ /save
++ /exit
+
+On command 'save' program will do:
+
+1. Generate XML
+2. Validate XML according schema in `notebook.db.xsd`
+3. Save to `notebook.db.xsd`
+
+> CmdLet.cs taken from `08.2-phonebook`

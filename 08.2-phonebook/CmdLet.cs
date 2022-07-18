@@ -20,6 +20,7 @@ public enum PhoneNumType
 {
     National,
     International,
+    Internal,
     None
 }
 
@@ -120,6 +121,62 @@ public struct PhoneNum : ICmdArg
 }
 
 /// <summary>
+/// Внутренний номер телефона. Без проверки, просто цифры
+/// </summary>
+public struct InternalPhoneNum : ICmdArg
+{
+    static readonly string name = "InternalPhoneNum";
+    static string pattern = @"(?<" + name + @">(?<phone>[0-9\-\s]{7,14}))";
+    public string Name => name;
+    public PhoneNumType Type { get; private set; } = PhoneNumType.None;
+    public uint Value { get; private set; } = 0;
+    void Invalidate()
+    {
+        Type = PhoneNumType.None;
+        Value = 0;
+        Success = false;
+    }
+    public InternalPhoneNum() => Invalidate();
+    public InternalPhoneNum(PhoneNumType type, uint phone)
+    {
+        Type = type;
+        Value = phone;
+    }
+    // ICmdArg
+    public string Pattern()
+    {
+        if (Optional)
+            return pattern + "?";
+        return pattern + "??";
+    }
+    public bool Optional { get; set; } = false;
+    public bool Success { get; private set; } = false;
+    public bool Parse(GroupCollection groups)
+    {
+        if (!groups.ContainsKey(name))
+        {
+            Invalidate();
+            return false;
+        }
+
+        Value = uint.Parse(String.Join("", groups[name].Value.Split('-', '(', ')')));
+        Type = PhoneNumType.Internal;
+        Success = true;
+        return true;
+    }
+    public override string ToString()
+    {
+        if (Type == PhoneNumType.None)
+            return String.Empty;
+        uint[] v = new uint[3];
+        v[0] = Value / 10_000;
+        v[1] = (Value - v[0] * 10_000) / 100;
+        v[2] = (Value - v[0] * 10_000 - v[1] * 100);
+        return String.Join('-', v.Select(x => x.ToString()));
+    }
+}
+
+/// <summary>
 /// Фамилия Имя Отчество
 /// </summary>
 public struct PersonName : ICmdArg
@@ -167,6 +224,56 @@ public struct PersonName : ICmdArg
         return true;
     }
     public override string ToString() => Value ?? String.Empty;
+}
+
+/// <summary>
+/// Улица, Дом, Квартира
+/// </summary>
+public struct Address : ICmdArg
+{
+    static readonly string name = "Address";
+    static readonly string[] components = new string[] {"street", "house", "flat"};
+    static string pattern = @"(?<" + name + @">(?<street>\w+)\s+(?<house>\w+)\s+(?<flat>\d+))";
+    public string Name => name;
+    public (string street, string house, uint flat)? Value { get; private set; } = null;
+    public Address() => Invalidate();
+    void Invalidate()
+    {
+        Value = null;
+        Success = false;
+    }
+    // ICmdArg
+    public string Pattern()
+    {
+        if (Optional)
+            return pattern + "?";
+        return pattern + "??";
+    }
+    public bool Optional { get; set; } = false;
+    public bool Success { get; private set; } = false;
+    public bool Parse(GroupCollection groups)
+    {
+        if (!groups.ContainsKey(name))
+        {
+            Invalidate();
+            return false;
+        }
+
+        foreach (var part in components)
+            if (!groups.ContainsKey(part))
+            {
+                Invalidate();
+                return false;
+            }
+
+        Value = (groups["street"].Value,
+                 groups["house"].Value,
+                 uint.Parse(groups["flat"].Value));
+        Success = true;
+
+        return true;
+    }
+    public override string ToString() => Value != null ? Value.ToString()! : String.Empty;
 }
 
 public struct CmdLet : IEnumerable<ICmdArg>
